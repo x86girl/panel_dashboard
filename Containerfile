@@ -10,7 +10,6 @@ WORKDIR /panel_dashboard
 RUN pip install -r ./requirements.txt
 RUN pip install matplotlib
 EXPOSE 8000
-RUN mkdir /data
-WORKDIR /data
+WORKDIR /panel_dashboard
 CMD /bin/bash -c 'panel serve ../panel_dashboard/Interactive_dashboard.ipynb --port=8000 --allow-websocket-origin='*''
 
