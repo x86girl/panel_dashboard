@@ -1,14 +1,10 @@
 FROM fedora:latest
-WORKDIR /
-RUN dnf update -y
-RUN dnf install git python3.12 -y
-RUN git clone https://github.com/x86girl/panel_dashboard.git
+WORKDIR /panel_dashboard
+RUN dnf update -y && dnf install -y python3.12 && dnf clean all
+COPY requirements.txt .
 RUN python3.12 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
-RUN pip install --upgrade pip
-WORKDIR /panel_dashboard
-RUN pip install -r ./requirements.txt
+RUN pip install --upgrade pip && pip install -r requirements.txt
+COPY . .
 EXPOSE 8000
-WORKDIR /panel_dashboard
-CMD /bin/bash -c 'panel serve ../panel_dashboard/Interactive_dashboard.ipynb --port=8000 --allow-websocket-origin='*''
-
+CMD ["panel", "serve", "Interactive_dashboard.ipynb", "--port=8000", "--address=0.0.0.0", "--allow-websocket-origin=*"]
