@@ -72,9 +72,21 @@ To stop the container:
 podman stop $(podman ps -q --filter ancestor=upper-limb-rehab-dashboard)
 ```
 
+## Example Data
+
+The `examples/` folder contains three sample session files, one per movement cluster:
+
+| File | Cluster | Profile |
+|---|---|---|
+| `20221003-132653_JigsawPuzzle.csv` | 0 | Diverse movement patterns, high variance |
+| `20221003-134004_JigsawPuzzle.csv` | 1 | Large, frequent, consistent movements |
+| `20220928-193156_JigsawPuzzle.csv` | 2 | Limited range of motion |
+
+Upload these files through the dashboard to explore the different visualizations and cluster predictions.
+
 ## Usage
 
-1. Click **Choose Files** in the sidebar to upload one or more session CSV files captured by the e-puzzle AR game.
+1. Click **Choose Files** in the sidebar to upload one or more session CSV files (try the ones in `examples/`).
 2. Select a limb (shoulder, elbow, or knee) and direction (L/R) from the dropdowns.
 3. Navigate between tabs:
    - **Main** — filtered signal plots with peak markers for uploaded sessions
